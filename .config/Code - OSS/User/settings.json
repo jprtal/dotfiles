@@ -1,14 +1,12 @@
 {
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
-    "extensions.ignoreRecommendations": true,
     "workbench.enableExperiments": false,
     "window.restoreWindows": "none",
     "workbench.startupEditor": "newUntitledFile",
     "files.hotExit": "off",
     "window.titleBarStyle": "custom",
     "window.zoomLevel": 0,
-    "C_Cpp.clang_format_fallbackStyle": "Google",
     "workbench.iconTheme": "material-icon-theme",
     "[dart]": {
         "editor.formatOnSave": false,
@@ -25,5 +23,15 @@
     "dart.flutterCreateAndroidLanguage": "java",
     "dart.allowAnalytics": false,
     "platformio-ide.activateOnlyOnPlatformIOProject": true,
-    "platformio-ide.disablePIOHomeStartup": true
+    "platformio-ide.disablePIOHomeStartup": true,
+    "editor.fontSize": 15,
+    "terminal.integrated.fontFamily": "Hack",
+    "workbench.editor.untitled.hint": "hidden",
+    "C_Cpp.autocompleteAddParentheses": true,
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4 }",
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "/usr/include/**",
+        "/usr/lib64/**"
+    ],
 }
