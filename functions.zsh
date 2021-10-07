@@ -5,3 +5,27 @@ function cert-sha1() {
 function sound-card-params() {
     cat /proc/asound/card$1/pcm0p/sub0/hw_params
 }
+
+# Deal with "Verification failed for feature 10"
+function bns() {
+    while ! bn "$1"; do
+        :
+    done
+}
+
+function omzp() {
+    plugins="$HOME/.oh-my-zsh/custom/plugins"
+
+    for plugin in $plugins/*; do
+        if [ -d "$plugin/.git" ]; then
+            echo "Updating ${plugin##*/}."
+            git -C "$plugin" pull
+        fi
+    done
+}
+
+function pip-update() {
+    for i in $(pip list -o | awk "NR > 2 {print $1}"); do
+        pip install --user -U $i;
+    done
+}

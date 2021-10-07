@@ -4,8 +4,11 @@ alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 # AUR helper
 alias yay="paru"
 alias yeet="paru -Rcs"
-alias whee="paru -Sc"
-alias update="paru -Syu --news; flatpak update"
+alias whee="paru -Sccd"
+alias update="paru -Syu --news; echo; flatpak update"
+
+# Update oh-my-zsh and it's plugins
+alias omz-update="omz update; echo; omzp"
 
 # Adjust monitor brightness
 alias bn="ddcutil setvcp 10"
