@@ -13,17 +13,6 @@ function bns() {
     done
 }
 
-function omzp() {
-    plugins="$HOME/.oh-my-zsh/custom/plugins"
-
-    for plugin in $plugins/*; do
-        if [ -d "$plugin/.git" ]; then
-            echo "Updating ${plugin##*/}."
-            git -C "$plugin" pull
-        fi
-    done
-}
-
 function pip-update() {
     for i in $(pip list -o | awk "NR > 2 {print $1}"); do
         pip install --user -U $i;
