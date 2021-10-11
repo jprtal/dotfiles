@@ -4,6 +4,8 @@ alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 # Colors
 alias ls="ls --color=auto"
 alias diff="diff --color=auto"
+alias grep="grep --color=auto"
+alias ip="ip -color"
 
 # AUR helper
 alias yay="paru"
