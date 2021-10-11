@@ -94,8 +94,11 @@ zstyle ":completion:*" menu select
 zstyle ":completion::complete:*" gain-privileges 1
 
 # Cache completions
-zstyle ":completion:*" use-cache on
-zstyle ":completion:*" cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompcache"
+CUSTOM_COMP_CACHE_DIR=${CUSTOM_COMP_CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/zsh}
+[[ ! -d ${CUSTOM_COMP_CACHE_DIR} ]] && mkdir -p "${CUSTOM_COMP_CACHE_DIR}"
+zstyle ":completion:*" use-cache yes
+zstyle ":completion:*:complete:*" cache-path "${CUSTOM_COMP_CACHE_DIR}"
+unset CUSTOM_COMP_CACHE_DIR
 
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
