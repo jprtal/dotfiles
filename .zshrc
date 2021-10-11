@@ -72,8 +72,8 @@ fi
 
 # Change directories without typing cd
 setopt auto_cd
-# Completions for aliases
-setopt complete_aliases
+# Treat aliases as distinct commands for completion purposes
+# setopt complete_aliases
 # Remove commands from history that start with space
 setopt hist_ignore_space
 # Read and write history everytime
@@ -103,11 +103,6 @@ zstyle ":completion:*:complete:*" cache-path "${CUSTOM_COMP_CACHE_DIR}"
 unset CUSTOM_COMP_CACHE_DIR
 
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
-
 # Zsh Colors
 # autoload -Uz colors
 # colors
@@ -116,10 +111,23 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 autoload -Uz compinit
 compinit
 
+# Stop kill-word on directory delimiter
+autoload -Uz select-word-style
+select-word-style bash
+
 
 # Load aliases and functions
 [[ ! -f ~/aliases.zsh ]] || source ~/aliases.zsh
 [[ ! -f ~/functions.zsh ]] || source ~/functions.zsh
+
+
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Load zsh-syntax-highlighting at the end
+# https://github.com/zsh-users/zsh-syntax-highlighting/issues/67
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
