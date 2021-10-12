@@ -1,0 +1,6 @@
+# Deal with "Verification failed for feature 10"
+function bns() {
+    while ! ddcutil setvcp 10 "$1"; do
+        :
+    done
+}

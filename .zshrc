@@ -6,6 +6,21 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+CUSTOM_ZSH_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+if [[ -d "${CUSTOM_ZSH_CONFIG_DIR}" ]]; then
+  [[ -d "${CUSTOM_ZSH_CONFIG_DIR}/aliases" ]] && source ${CUSTOM_ZSH_CONFIG_DIR}/aliases/*
+
+  [[ -d "${CUSTOM_ZSH_CONFIG_DIR}/completions" ]] && fpath=( "${CUSTOM_ZSH_CONFIG_DIR}/completions" "${fpath[@]}" )
+
+  if [[ -d "${CUSTOM_ZSH_CONFIG_DIR}/functions" ]]; then
+    fpath=( "${CUSTOM_ZSH_CONFIG_DIR}/functions" "${fpath[@]}" )
+    # Load functions
+    autoload -Uz ${fpath[1]}/*(:t)
+  fi
+fi
+unset CUSTOM_ZSH_CONFIG_DIR
+
+
 export PATH="$HOME/.local/bin:$PATH"
 
 export PAGER="${PAGER:-less}"
@@ -114,11 +129,6 @@ compinit
 # Stop kill-word on directory delimiter
 autoload -Uz select-word-style
 select-word-style bash
-
-
-# Load aliases and functions
-[[ ! -f ~/aliases.zsh ]] || source ~/aliases.zsh
-[[ ! -f ~/functions.zsh ]] || source ~/functions.zsh
 
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme

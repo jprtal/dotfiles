@@ -1,0 +1,3 @@
+function sound-card-params() {
+    cat /proc/asound/card$1/pcm0p/sub0/hw_params
+}
