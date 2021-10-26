@@ -1,0 +1,32 @@
+if [ $# -eq 0 ]; then
+    echo "Usage: dec2hex DEC_NUMBER"
+    return 1
+fi
+
+DEC_NUMBER=$1
+
+re='^[0-9]+$'
+if ! [[ $DEC_NUMBER =~ $re ]]; then
+   echo "Error: Not a valid decimal number" >&2;
+   return 2
+fi
+
+hex_number=$(echo "obase=16; ibase=10; $DEC_NUMBER" | bc)
+
+bytes_number=${#hex_number}
+
+# (N + (denom-1)) / (denom)
+factor_round_up=$((($bytes_number + 3) / 4))
+total_bytes=$((4 * factor_round_up))
+
+zeros=""
+for i in `seq 1 $(($total_bytes - $bytes_number))`; do
+    zeros+="0"
+done
+
+hex_number=$zeros$hex_number
+
+printf "0x%s\n" "$hex_number"
+printf "%s\n" "$hex_number"
+# printf "%s\n" "$(echo $hex_number | rev | sed -r 's/(.{4})/\1 /g' | rev)"
+printf "%s\n" "$(echo $hex_number | sed -r 's/(.{4})/\1 /g')"

@@ -1,0 +1,42 @@
+# Valid with hex numbers starting with or without "0x"
+
+if [ $# -eq 0 ]; then
+    echo "Usage: hex2bin (0x)HEX_NUMBER"
+    return 1
+fi
+
+HEX_NUMBER=$(echo "$1" | cut -d'x' -f2 | tr '[:lower:]' '[:upper:]')
+
+# bc doesn't allow lowercase
+re='^[0-9A-F]+$'
+if ! [[ $HEX_NUMBER =~ $re ]]; then
+   echo "Error: Not a valid hex number" >&2;
+   return 2
+fi
+
+bin_number=""
+
+for i in `seq 0 $((${#HEX_NUMBER} - 1))`; do
+    if [ ${HEX_NUMBER:$i:1} = "0" ]; then
+        bin_number+="0000"
+    else
+        bin_number+=$(echo "obase=2; ibase=16; ${HEX_NUMBER:$i:1}" | bc | awk '{ printf "%04d", $0 }')
+    fi
+done
+
+bits_number=${#bin_number}
+
+# (N + (denom-1)) / (denom)
+factor_round_up=$((($bits_number + 3) / 4))
+total_bits=$((4 * factor_round_up))
+
+zeros=""
+for i in `seq 1 $(($total_bits - $bits_number))`; do
+    zeros+="0"
+done
+
+bin_number=$zeros$bin_number
+
+printf "0b%s\n" "$bin_number"
+printf "%s\n" "$bin_number"
+printf "%s\n" "$(echo $bin_number | sed -r 's/(.{4})/\1 /g')"
