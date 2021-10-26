@@ -101,7 +101,11 @@ zstyle ":completion:*" matcher-list "m:{a-zA-Z-_}={A-Za-z_-}" "r:|=*" "l:|=* r:|
 # zstyle ":completion:*" matcher-list "m:{a-zA-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"
 
 # Colored completion listings
-eval "$(dircolors -b)"
+if [[ -f ~/.dir_colors ]]; then
+  eval "$(dircolors -b ~/.dir_colors)"
+else
+  eval "$(dircolors -b)"
+fi
 zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
 
 # Completions with arrow keys
