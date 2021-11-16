@@ -1,12 +1,12 @@
 {
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
     "workbench.enableExperiments": false,
     "window.restoreWindows": "none",
     "workbench.startupEditor": "newUntitledFile",
     "files.hotExit": "off",
     "window.titleBarStyle": "custom",
-    "window.zoomLevel": 0,
     "workbench.iconTheme": "material-icon-theme",
     "[dart]": {
         "editor.formatOnSave": false,
@@ -24,8 +24,7 @@
     "dart.allowAnalytics": false,
     "platformio-ide.activateOnlyOnPlatformIOProject": true,
     "platformio-ide.disablePIOHomeStartup": true,
-    "editor.fontSize": 15,
-    "terminal.integrated.fontFamily": "Hack",
+    "terminal.integrated.fontFamily": "'MesloLGS Nerd Font'",
     "workbench.editor.untitled.hint": "hidden",
     "C_Cpp.autocompleteAddParentheses": true,
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4 }",
@@ -34,4 +33,8 @@
         "/usr/include/**",
         "/usr/lib64/**"
     ],
+    "editor.fontFamily": "'JetBrains Mono', 'Fira Code', 'Noto Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.fontSize": 13.5,
 }
