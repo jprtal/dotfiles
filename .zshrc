@@ -8,7 +8,11 @@ fi
 
 CUSTOM_ZSH_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 if [[ -d "${CUSTOM_ZSH_CONFIG_DIR}" ]]; then
-  [[ -d "${CUSTOM_ZSH_CONFIG_DIR}/aliases" ]] && source ${CUSTOM_ZSH_CONFIG_DIR}/aliases/*
+  if [[ -d "${CUSTOM_ZSH_CONFIG_DIR}/aliases" ]]; then
+    for file in ${CUSTOM_ZSH_CONFIG_DIR}/aliases/*; do
+      source $file
+    done
+  fi
 
   [[ -d "${CUSTOM_ZSH_CONFIG_DIR}/completions" ]] && fpath=( "${CUSTOM_ZSH_CONFIG_DIR}/completions" "${fpath[@]}" )
 
