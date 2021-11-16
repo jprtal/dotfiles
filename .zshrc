@@ -26,8 +26,17 @@ export PATH="$HOME/.local/bin:$PATH"
 export PAGER="${PAGER:-less}"
 export LESS="${LESS:--R}"
 
+# Dotfolders
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wgetrc"
+export GNUPGHOME="${XDG_CONFIG_HOME:-$HOME/.config}/gnupg"
+export CARGO_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/cargo"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
+export LESSHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/less/lesshst"
+export PYTHONHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/python/python_history"
+# export VSCODE_EXTENSIONS="${XDG_DATA_HOME:-$HOME/.local/share}/vscode-oss/extensions"
 
-HISTFILE=~/.histfile
+
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/histfile"
 HISTSIZE=50000
 SAVEHIST=10000
 
@@ -115,7 +124,7 @@ zstyle ":completion:*" menu select
 zstyle ":completion::complete:*" gain-privileges 1
 
 # Cache completions
-CUSTOM_COMP_CACHE_DIR=${CUSTOM_COMP_CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/zsh}
+CUSTOM_COMP_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 [[ ! -d ${CUSTOM_COMP_CACHE_DIR} ]] && mkdir -p "${CUSTOM_COMP_CACHE_DIR}"
 zstyle ":completion:*" use-cache yes
 zstyle ":completion:*:complete:*" cache-path "${CUSTOM_COMP_CACHE_DIR}"
