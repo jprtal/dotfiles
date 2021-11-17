@@ -108,6 +108,15 @@ setopt hist_ignore_space
 setopt share_history
 
 
+# Zsh Colors
+# autoload -Uz colors
+# colors
+
+# Stop kill-word on directory delimiter
+autoload -Uz select-word-style
+select-word-style bash
+
+
 # Case and hyphen insensitive
 zstyle ":completion:*" matcher-list "m:{a-zA-Z-_}={A-Za-z_-}" "r:|=*" "l:|=* r:|=*"
 # Case insensitive
@@ -132,20 +141,11 @@ CUSTOM_COMP_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 [[ ! -d ${CUSTOM_COMP_CACHE_DIR} ]] && mkdir -p "${CUSTOM_COMP_CACHE_DIR}"
 zstyle ":completion:*" use-cache yes
 zstyle ":completion:*:complete:*" cache-path "${CUSTOM_COMP_CACHE_DIR}"
-unset CUSTOM_COMP_CACHE_DIR
 
-
-# Zsh Colors
-# autoload -Uz colors
-# colors
-
-# Completion system
 autoload -Uz compinit
-compinit
+compinit -d "${CUSTOM_COMP_CACHE_DIR}/zcompdump"
 
-# Stop kill-word on directory delimiter
-autoload -Uz select-word-style
-select-word-style bash
+unset CUSTOM_COMP_CACHE_DIR
 
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
