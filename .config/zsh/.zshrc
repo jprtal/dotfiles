@@ -25,21 +25,6 @@ fi
 unset CUSTOM_ZSH_CONFIG_DIR
 
 
-export PATH="$HOME/.local/bin:$PATH"
-
-export PAGER="${PAGER:-less}"
-export LESS="${LESS:--R}"
-
-# Dotfolders
-export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wgetrc"
-export GNUPGHOME="${XDG_CONFIG_HOME:-$HOME/.config}/gnupg"
-export CARGO_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/cargo"
-export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
-export LESSHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/less/lesshst"
-export PYTHONHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/python/python_history"
-# export VSCODE_EXTENSIONS="${XDG_DATA_HOME:-$HOME/.local/share}/vscode-oss/extensions"
-
-
 HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/histfile"
 HISTSIZE=50000
 SAVEHIST=10000
@@ -158,4 +143,4 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ${ZDOTDIR:-$HOME}/.p10k.zsh ]] || source ${ZDOTDIR:-$HOME}/.p10k.zsh
