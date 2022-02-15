@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Establish a connection between "Virtual" and the default port. This is needed until a better solution is found because routing Teams audio to an OBS Jack input client automatically with jack-matchmaker does some weird things.
+# Option 1
+pw-loopback --capture-props='media.class=Audio/Sink node.name=virtual-sink node.description=Virtual'
 
-oldifs="$IFS"
-IFS=$'\n'
-PORTS=($(jack_lsp | grep "$(pw-cli list-objects | grep -B 8 -A 2 $(cat ~/.config/pipewire/media-session.d/default-nodes | grep "default.configured.audio.sink" | cut -d'"' -f 6) | grep "node.description" | cut -d'"' -f 2)" | grep -E "(playback|out)"))
-IFS="$oldifs"
+# Option 2
+# pactl load-module module-remap-sink sink_name=virtual-sink sink_properties=device.description="Virtual"
 
-pactl load-module module-null-sink sink_name=virtual_sink sink_properties=device.description="Virtual"
-
-jack_connect "Virtual Monitor:monitor_FL" "${PORTS[0]}"
-jack_connect "Virtual Monitor:monitor_FR" "${PORTS[1]}"
+# Option 3
+# pactl load-module module-null-sink media.class=Audio/Sink sink_name=virtual_sink sink_properties=device.description="Virtual"
+# pactl load-module module-loopback source=virtual_sink.monitor sink=@DEFAULT_SINK@
