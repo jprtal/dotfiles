@@ -1,6 +1,4 @@
 {
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
     "telemetry.telemetryLevel": "off",
     "workbench.enableExperiments": false,
     "window.restoreWindows": "none",
@@ -37,4 +35,11 @@
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": true,
     "editor.fontSize": 13.5,
+    "[c]": {
+        "editor.rulers": [
+            80,
+            120
+        ]
+    },
+    "terminal.integrated.enablePersistentSessions": false,
 }
