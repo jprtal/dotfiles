@@ -1,0 +1,12 @@
+if [ $# -eq 0 ]; then
+    echo "Usage: tar-unzstd <input> <output>"
+    echo "Use 'pkill -USR1 tar' to print statistics."
+    return 1
+fi
+
+local OUTPUT=""
+if [ -n "$2"  ]; then
+    OUTPUT="--directory=${2}"
+fi
+
+tar --totals=USR1 -x -I 'zstdmt -d' -f "$1" "${OUTPUT}" | pv
