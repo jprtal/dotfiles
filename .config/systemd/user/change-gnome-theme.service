@@ -1,0 +1,10 @@
+[Unit]
+Description=Change GNOME theme
+After=graphical.target
+
+[Service]
+Type=oneshot
+ExecStart=sh -c "~/.config/autostart-scripts/change-gnome-theme.sh"
+
+[Install]
+WantedBy=multi-user.target
