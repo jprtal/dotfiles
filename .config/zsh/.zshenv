@@ -19,6 +19,8 @@ export LESSHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/less/lesshst"
 export PYTHONHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/python_history"
 # export VSCODE_EXTENSIONS="${XDG_DATA_HOME:-$HOME/.local/share}/vscode-oss/extensions"
 export NVM_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nvm"
+export NODE_REPL_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/node_repl_history"
+export TS_NODE_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/ts_node_repl_history"
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME:-$HOME/.cache}/nv"
 
 if [ -x "$(command -v seahorse)" ]; then
