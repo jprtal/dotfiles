@@ -3,24 +3,25 @@ if [ $# -eq 0 ]; then
     return 1
 fi
 
-DEC_NUMBER=$1
+local DEC_NUMBER=$1
 
-re='^[0-9]+$'
+local re='^[0-9]+$'
 if ! [[ $DEC_NUMBER =~ $re ]]; then
    echo "Error: Not a valid decimal number" >&2;
    return 2
 fi
 
-bits_number=$(echo "(l($DEC_NUMBER)/l(2))" | bc -l | awk '{ print int($1) }')
+local bits_number=$(echo "(l($DEC_NUMBER)/l(2))" | bc -l | awk '{ print int($1) }')
 
 # (N + (denom-1)) / (denom)
-factor_round_up=$((($bits_number + 3) / 4))
-total_bits=$((4 * factor_round_up))
+local factor_round_up=$(((bits_number + 3) / 4))
+local total_bits=$((4 * factor_round_up))
 
-bin_number=$(echo "obase=2; ibase=10; $DEC_NUMBER" | bc)
+local bin_number=$(echo "obase=2; ibase=10; $DEC_NUMBER" | bc)
 
-zeros=""
-for i in `seq 1 $(($total_bits - ${#bin_number}))`; do
+local zeros=""
+local i
+for i in $(seq 1 $((total_bits - ${#bin_number}))); do
     zeros+="0"
 done
 
@@ -28,4 +29,4 @@ bin_number=$zeros$bin_number
 
 printf "0b%s\n" "$bin_number"
 printf "%s\n" "$bin_number"
-printf "%s\n" "$(echo $bin_number | sed -r 's/(.{4})/\1 /g')"
+printf "%s\n" "$(echo "$bin_number" | sed -r 's/(.{4})/\1 /g')"

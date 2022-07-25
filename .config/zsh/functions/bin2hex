@@ -5,44 +5,45 @@ if [ $# -eq 0 ]; then
     return 1
 fi
 
-BIN_NUMBER=$(echo "$1" | cut -d'b' -f2)
+local BIN_NUMBER=$(echo "$1" | cut -d'b' -f2)
 
-re='^[0-1]+$'
+local re='^[0-1]+$'
 if ! [[ $BIN_NUMBER =~ $re ]]; then
    echo "Error: Not a valid binary number" >&2;
    return 2
 fi
 
-REVERSED_BIN=$(echo $BIN_NUMBER | rev)
+local REVERSED_BIN=$(echo $BIN_NUMBER | rev)
 
-hex_number=""
+local hex_number=""
 for ((i = 0; i < ${#REVERSED_BIN}; i += 4)); do
-    substring=${REVERSED_BIN:$i:4}
+    local substring=${REVERSED_BIN:$i:4}
 
     if [[ $substring =~ ^[0]+$ ]]; then
         hex_number+="0"
     else
-        reversed_substring=$(echo $substring | rev)
+        local reversed_substring=$(echo $substring | rev)
         hex_number+=$(echo "obase=16; ibase=2; $reversed_substring" | bc)
     fi
 done
 
-bytes_number=${#hex_number}
+local bytes_number=${#hex_number}
 
 # (N + (denom-1)) / (denom)
-factor_round_up=$((($bytes_number + 3) / 4))
-total_bytes=$((4 * factor_round_up))
+local factor_round_up=$(((bytes_number + 3) / 4))
+local total_bytes=$((4 * factor_round_up))
 
-zeros=""
-for i in `seq 1 $(($total_bytes - $bytes_number))`; do
+local zeros=""
+local i
+for i in $(seq 1 $((total_bytes - bytes_number))); do
     zeros+="0"
 done
 
-hex_number=$(echo $hex_number | rev)
+hex_number=$(echo "$hex_number" | rev)
 
 hex_number=$zeros$hex_number
 
 printf "0x%s\n" "$hex_number"
 printf "%s\n" "$hex_number"
 # printf "%s\n" "$(echo $hex_number | rev | sed -r 's/(.{4})/\1 /g' | rev)"
-printf "%s\n" "$(echo $hex_number | sed -r 's/(.{4})/\1 /g')"
+printf "%s\n" "$(echo "$hex_number" | sed -r 's/(.{4})/\1 /g')"

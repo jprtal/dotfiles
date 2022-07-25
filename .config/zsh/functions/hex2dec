@@ -5,10 +5,10 @@ if [ $# -eq 0 ]; then
     return 1
 fi
 
-HEX_NUMBER=$(echo "$1" | cut -d'x' -f2 | tr '[:lower:]' '[:upper:]')
+local HEX_NUMBER=$(echo "$1" | cut -d'x' -f2 | tr '[:lower:]' '[:upper:]')
 
 # bc doesn't allow lowercase
-re='^[0-9A-F]+$'
+local re='^[0-9A-F]+$'
 if ! [[ $HEX_NUMBER =~ $re ]]; then
    echo "Error: Not a valid hex number" >&2;
    return 2

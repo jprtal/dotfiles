@@ -1,5 +1,6 @@
 function pip-update() {
+    local i
     for i in $(pip list -o | awk "NR > 2 {print $1}"); do
-        pip install --user -U $i;
+        pip install --user -U "$i";
     done
 }

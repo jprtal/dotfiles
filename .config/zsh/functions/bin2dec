@@ -6,9 +6,9 @@ if [ $# -eq 0 ]; then
 fi
 
 # bc doesn't allow lowercase
-BIN_NUMBER=$(echo "$1" | cut -d'b' -f2 | tr '[:lower:]' '[:upper:]')
+local BIN_NUMBER=$(echo "$1" | cut -d'b' -f2 | tr '[:lower:]' '[:upper:]')
 
-re='^[0-1]+$'
+local re='^[0-1]+$'
 if ! [[ $BIN_NUMBER =~ $re ]]; then
    echo "Error: Not a valid binary number" >&2;
    return 2
