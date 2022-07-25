@@ -1,7 +1,7 @@
 # Set ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh" in /etc/zsh/zshenv
 
 typeset -U PATH path
-path=("$HOME/.local/bin" "$path[@]")
+path=("$HOME/.local/bin" "${path[@]}")
 export PATH
 
 export PAGER="${PAGER:-less}"
