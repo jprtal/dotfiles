@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=KillFirewallApplet
+GenericName=Kill firewalld applet
+Comment=Kill the firewalld applet that it's shown as a tray icon
+Exec=sh -c "$HOME/.config/autostart-scripts/firewall-applet.sh"
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=false

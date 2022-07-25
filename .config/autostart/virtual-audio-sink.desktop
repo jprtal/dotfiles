@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=VirtualAudio
+GenericName=Create virtual audio
+Comment=Create virtual audio sink connected to the default audio output
+Exec=sh -c "$HOME/.config/autostart-scripts/audio.sh"
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=false
