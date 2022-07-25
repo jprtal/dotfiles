@@ -1,0 +1,7 @@
+#compdef vfio-gpu
+
+function _vfio-gpu() {
+    _arguments '1:args:(nv vm top)'
+}
+
+_vfio-gpu "$@"
