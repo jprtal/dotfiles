@@ -18,6 +18,7 @@ export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"
 export LESSHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/less/lesshst"
 export PYTHONHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/python_history"
 # export VSCODE_EXTENSIONS="${XDG_DATA_HOME:-$HOME/.local/share}/vscode-oss/extensions"
+export CUDA_CACHE_PATH="${XDG_CACHE_HOME:-$HOME/.cache}/nv"
 
 # Rootless Podman docker-compose support
 if [ -e "$XDG_RUNTIME_DIR/podman/podman.sock" ]; then
