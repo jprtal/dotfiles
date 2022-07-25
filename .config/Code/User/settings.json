@@ -1,0 +1,31 @@
+{
+    "telemetry.telemetryLevel": "off",
+    "workbench.enableExperiments": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.editor.untitled.hint": "hidden",
+    "window.restoreWindows": "none",
+    // "files.hotExit": "off",
+    "window.titleBarStyle": "custom",
+    "terminal.integrated.fontFamily": "'MesloLGS Nerd Font'",
+    "editor.fontFamily": "'Jetbrains Mono','Fira Code'",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "gitlens.defaultDateLocale": "system",
+    "terminal.integrated.profiles.linux": {
+        "zsh": {
+            "path": "zsh",
+            "args": [
+                "-i"
+            ]
+        }
+    },
+    // "editor.rulers": [
+    //     80,
+    //     120
+    // ],
+    "editor.renderWhitespace": "all",
+    "editor.fontWeight": "500",
+    "editor.fontLigatures": true,
+    "workbench.colorTheme": "Monokai",
+}
