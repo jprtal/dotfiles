@@ -25,9 +25,11 @@ if [ -x "$(command -v seahorse)" ]; then
 fi
 
 # Rootless Podman docker-compose support
-if [ -e "$XDG_RUNTIME_DIR/podman/podman.sock" ]; then
+_ROOTLES_PODMAN=false
+if [[ "$_ROOTLES_PODMAN" = true && -e "$XDG_RUNTIME_DIR/podman/podman.sock" ]]; then
     export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 fi
+unset _ROOTLES_PODMAN
 
 export ANDROID_HOME="$HOME/Android/Sdk"
 export CHROME_EXECUTABLE="/usr/bin/chromium"
