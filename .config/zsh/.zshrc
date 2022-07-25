@@ -20,6 +20,12 @@ if [[ -d "${ZDOTDIR}" ]]; then
     # Load functions
     autoload -Uz "${fpath[1]}"/*(:t)
   fi
+
+  if [[ -d "${ZDOTDIR}/plugins" ]]; then
+    for file in "${ZDOTDIR}/plugins"/*/*.zsh; do
+      source "$file"
+    done
+  fi
 fi
 unset file
 
