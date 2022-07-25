@@ -95,6 +95,8 @@ setopt auto_cd
 setopt hist_ignore_space
 # Read and write history everytime
 setopt share_history
+# Match files without explicitly specifying the dot
+setopt globdots
 
 
 # Zsh Colors
