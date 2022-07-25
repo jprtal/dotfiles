@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Option 1
 pw-loopback --capture-props='media.class=Audio/Sink node.name=virtual-sink node.description=Virtual'
