@@ -19,7 +19,7 @@
 ## Automatically indent a newly created line to the same number of
 ## tabs and/or spaces as the preceding line -- or as the next line
 ## if the preceding line is the beginning of a paragraph.
-# set autoindent
+set autoindent
 
 ## Back up files to the current filename plus a tilde.
 # set backup
@@ -68,7 +68,7 @@
 # set jumpyscrolling
 
 ## Display line numbers to the left (and any anchors in the margin).
-# set linenumbers
+set linenumbers
 
 ## Enable vim-style lock-files.  This is just to let a vim user know you
 ## are editing a file [s]he is trying to edit and vice versa.  There are
@@ -184,7 +184,7 @@
 ## of tabs and spaces.  187 in ISO 8859-1 (0000BB in Unicode) and 183 in
 ## ISO-8859-1 (0000B7 in Unicode) seem to be good values for these.
 ## The default when in a UTF-8 locale:
-# set whitespace "»·"
+set whitespace "»·"
 ## The default otherwise:
 # set whitespace ">."
 
