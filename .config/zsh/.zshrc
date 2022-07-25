@@ -6,23 +6,22 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
-CUSTOM_ZSH_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-if [[ -d "${CUSTOM_ZSH_CONFIG_DIR}" ]]; then
-  if [[ -d "${CUSTOM_ZSH_CONFIG_DIR}/aliases" ]]; then
-    for file in ${CUSTOM_ZSH_CONFIG_DIR}/aliases/*; do
-      source $file
+if [[ -d "${ZDOTDIR}" ]]; then
+  if [[ -d "${ZDOTDIR}/aliases" ]]; then
+    for file in "${ZDOTDIR}/aliases"/*; do
+      source "$file"
     done
   fi
 
-  [[ -d "${CUSTOM_ZSH_CONFIG_DIR}/completions" ]] && fpath=( "${CUSTOM_ZSH_CONFIG_DIR}/completions" "${fpath[@]}" )
+  [[ -d "${ZDOTDIR}/completions" ]] && fpath=( "${ZDOTDIR}/completions" "${fpath[@]}" )
 
-  if [[ -d "${CUSTOM_ZSH_CONFIG_DIR}/functions" ]]; then
-    fpath=( "${CUSTOM_ZSH_CONFIG_DIR}/functions" "${fpath[@]}" )
+  if [[ -d "${ZDOTDIR}/functions" ]]; then
+    fpath=( "${ZDOTDIR}/functions" "${fpath[@]}" )
     # Load functions
-    autoload -Uz ${fpath[1]}/*(:t)
+    autoload -Uz "${fpath[1]}"/*(:t)
   fi
 fi
-unset CUSTOM_ZSH_CONFIG_DIR
+unset file
 
 
 HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/histfile"
@@ -149,4 +148,4 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ${ZDOTDIR:-$HOME}/.p10k.zsh ]] || source ${ZDOTDIR:-$HOME}/.p10k.zsh
+[[ ! -f ${ZDOTDIR:-$HOME}/.p10k.zsh ]] || source "${ZDOTDIR:-$HOME}/.p10k.zsh"
