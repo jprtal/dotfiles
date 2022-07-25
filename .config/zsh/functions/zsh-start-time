@@ -1,0 +1,6 @@
+function zsh-start-time() {
+    local i
+    for i in $(seq 1 10); do
+        time zsh -i -c exit;
+    done
+}
