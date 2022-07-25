@@ -7,3 +7,7 @@ alias bn="ddcutil setvcp 10"
 
 # Misc
 alias sound-cards="cat /proc/asound/cards | grep ' -'"
+
+# cp
+alias ccp="rsync --info=progress2 -ah"
+alias sccp="sudo rsync --info=progress2 -ah"
