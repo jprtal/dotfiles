@@ -52,7 +52,9 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 key[Control-Left]="${terminfo[kLFT5]}"
 key[Control-Right]="${terminfo[kRIT5]}"
 key[Control-Delete]="${terminfo[kDC5]}"
-key[Control-Backspace]="${terminfo[kbs]}"
+#key[Control-Backspace]="${terminfo[kbs]}"
+key[Alt-Left]="${terminfo[kLFT3]}"
+key[Alt-Right]="${terminfo[kRIT3]}"
 
 # setup key accordingly
 [[ -n "${key[Home]}" ]] && bindkey -- "${key[Home]}" beginning-of-line
@@ -70,7 +72,9 @@ key[Control-Backspace]="${terminfo[kbs]}"
 [[ -n "${key[Control-Left]}" ]] && bindkey -- "${key[Control-Left]}" backward-word
 [[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
 [[ -n "${key[Control-Delete]}" ]] && bindkey -- "${key[Control-Delete]}" kill-word
-[[ -n "${key[Control-Backspace]}" ]] && bindkey -- "${key[Control-Backspace]}" backward-kill-word
+#[[ -n "${key[Control-Backspace]}" ]] && bindkey -- "${key[Control-Backspace]}" backward-kill-word
+[[ -n "${key[Alt-Left]}" ]] && bindkey -- "${key[Alt-Left]}" backward-word
+[[ -n "${key[Alt-Right]}" ]] && bindkey -- "${key[Alt-Right]}" forward-word
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
