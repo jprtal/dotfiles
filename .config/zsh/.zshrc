@@ -30,9 +30,12 @@ fi
 unset file
 
 
-HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/histfile"
+_ZSH_STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/zsh"
+[[ ! -d ${_ZSH_STATE_DIR} ]] && mkdir -p "${_ZSH_STATE_DIR}"
+HISTFILE="${_ZSH_STATE_DIR}/histfile"
 HISTSIZE=50000
 SAVEHIST=10000
+unset _ZSH_STATE_DIR
 
 
 # Keybindings
@@ -133,15 +136,14 @@ zstyle ":completion:*" menu select
 zstyle ":completion::complete:*" gain-privileges 1
 
 # Cache completions
-CUSTOM_COMP_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
-[[ ! -d ${CUSTOM_COMP_CACHE_DIR} ]] && mkdir -p "${CUSTOM_COMP_CACHE_DIR}"
+_ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+[[ ! -d ${_ZSH_CACHE_DIR} ]] && mkdir -p "${_ZSH_CACHE_DIR}"
 zstyle ":completion:*" use-cache yes
-zstyle ":completion:*:complete:*" cache-path "${CUSTOM_COMP_CACHE_DIR}"
+zstyle ":completion:*:complete:*" cache-path "${_ZSH_CACHE_DIR}"
 
 autoload -Uz compinit
-compinit -d "${CUSTOM_COMP_CACHE_DIR}/zcompdump"
-
-unset CUSTOM_COMP_CACHE_DIR
+compinit -d "${_ZSH_CACHE_DIR}/zcompdump"
+unset _ZSH_CACHE_DIR
 
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
