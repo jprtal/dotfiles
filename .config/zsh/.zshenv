@@ -9,7 +9,8 @@ export LESS="${LESS:--R}"
 
 # Dotfolders
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wgetrc"
-# export GNUPGHOME="${XDG_CONFIG_HOME:-$HOME/.config}/gnupg"
+export GNUPGHOME="${XDG_CONFIG_HOME:-$HOME/.config}/gnupg"
+[[ ! -d ${GNUPGHOME} ]] && mkdir -m 700 "${GNUPGHOME}"
 export CARGO_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/cargo"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME:-$HOME/.config}/java"
