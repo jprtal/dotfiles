@@ -1,6 +1,12 @@
+# Change monitor brightness
+
 # Deal with "Verification failed for feature 10"
 function bns() {
-    while ! ddcutil setvcp 10 "$1"; do
-        :
-    done
+    if [ -x "$(command -v ddcutil)" ]; then
+        while ! ddcutil setvcp 10 "$1"; do
+            :
+        done
+    else
+        echo "ddcutil is not installed."
+    fi
 }
