@@ -1,0 +1,7 @@
+# Sign Unified Kernel Images and systemd-boot for Secure Boot
+
+sudo find /boot -type f \( \
+    -name "archlinux-*.efi" \
+    -o -name "systemd-bootx64.efi" \
+\) -exec sh -c \
+'if ! sbverify --list {} 2>/dev/null | grep -q "signature certificates"; then sbsign --key /etc/secureboot/keys/db/db.key --cert /etc/secureboot/keys/db/db.crt --output "$1" "$1"; else echo "$1" already signed; fi' _ {} \;
