@@ -3,6 +3,8 @@
 export PAGER="${PAGER:-less}"
 export LESS="${LESS:--R}"
 
+export EDITOR="${EDITOR:-nano}"
+
 # Dotfolders
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wgetrc"
 export GNUPGHOME="${XDG_CONFIG_HOME:-$HOME/.config}/gnupg"
