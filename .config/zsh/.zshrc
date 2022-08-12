@@ -155,5 +155,11 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
+# Powerlevel10k Ctrl+P to toggle right prompt
+function toggle-right-prompt() { p10k display '*/right'=hide,show; }
+zle -N toggle-right-prompt
+bindkey '^P' toggle-right-prompt
+
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ${ZDOTDIR:-$HOME}/.p10k.zsh ]] || source "${ZDOTDIR:-$HOME}/.p10k.zsh"
