@@ -1,16 +1,15 @@
-# Valid with binary numbers starting with or without "0b"
-
 if [ $# -eq 0 ]; then
     echo "Usage: bin2hex (0b)BIN_NUMBER"
     return 1
 fi
 
-local BIN_NUMBER=$(echo "$1" | cut -d'b' -f2)
+# Binary with/without "0b" prefix or/and grouped
+local BIN_NUMBER=$(echo "$*" | tr -d ' ' | cut -d'b' -f2)
 
 local re='^[0-1]+$'
 if ! [[ $BIN_NUMBER =~ $re ]]; then
-   echo "Error: Not a valid binary number" >&2;
-   return 2
+    echo "Error: Not a valid binary number" >&2;
+    return 2
 fi
 
 local REVERSED_BIN=$(echo $BIN_NUMBER | rev)
@@ -41,9 +40,9 @@ done
 
 hex_number=$(echo "$hex_number" | rev)
 
-hex_number=$zeros$hex_number
+local extended_hex_number=$zeros$hex_number
 
 printf "0x%s\n" "$hex_number"
 printf "%s\n" "$hex_number"
-# printf "%s\n" "$(echo $hex_number | rev | sed -r 's/(.{4})/\1 /g' | rev)"
-printf "%s\n" "$(echo "$hex_number" | sed -r 's/(.{4})/\1 /g')"
+# printf "%s\n" "$(echo $extended_hex_number | rev | sed -r 's/(.{4})/\1 /g' | rev)"
+printf "%s\n" "$(echo "$extended_hex_number" | sed -r 's/(.{4})/\1 /g')"

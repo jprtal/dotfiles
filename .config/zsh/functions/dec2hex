@@ -7,8 +7,8 @@ local DEC_NUMBER=$1
 
 local re='^[0-9]+$'
 if ! [[ $DEC_NUMBER =~ $re ]]; then
-   echo "Error: Not a valid decimal number" >&2;
-   return 2
+    echo "Error: Not a valid decimal number" >&2;
+    return 2
 fi
 
 local hex_number=$(echo "obase=16; ibase=10; $DEC_NUMBER" | bc)
@@ -25,9 +25,9 @@ for i in $(seq 1 $((total_bytes - bytes_number))); do
     zeros+="0"
 done
 
-hex_number=$zeros$hex_number
+local extended_hex_number=$zeros$hex_number
 
 printf "0x%s\n" "$hex_number"
 printf "%s\n" "$hex_number"
-# printf "%s\n" "$(echo $hex_number | rev | sed -r 's/(.{4})/\1 /g' | rev)"
-printf "%s\n" "$(echo "$hex_number" | sed -r 's/(.{4})/\1 /g')"
+# printf "%s\n" "$(echo $extended_hex_number | rev | sed -r 's/(.{4})/\1 /g' | rev)"
+printf "%s\n" "$(echo "$extended_hex_number" | sed -r 's/(.{4})/\1 /g')"

@@ -1,11 +1,10 @@
-# Valid with hex numbers starting with or without "0x"
-
 if [ $# -eq 0 ]; then
     echo "Usage: hex2bin (0x)HEX_NUMBER"
     return 1
 fi
 
-local HEX_NUMBER=$(echo "$1" | cut -d'x' -f2 | tr '[:lower:]' '[:upper:]')
+# Hexadecimal with/without "0x" prefix or/and grouped
+local HEX_NUMBER=$(echo "$*" | tr -d ' ' | cut -d'x' -f2 | tr '[:lower:]' '[:upper:]')
 
 # bc doesn't allow lowercase
 local re='^[0-9A-F]+$'
@@ -25,19 +24,10 @@ for i in $(seq 0 $((${#HEX_NUMBER} - 1))); do
     fi
 done
 
-local bits_number=${#bin_number}
+local no_leading_zeros_bin_number=$(expr $bin_number + 0)
 
-# (N + (denom-1)) / (denom)
-local factor_round_up=$(((bits_number + 3) / 4))
-local total_bits=$((4 * factor_round_up))
-
-local zeros=""
-for i in $(seq 1 $((total_bits - bits_number))); do
-    zeros+="0"
-done
-
-bin_number=$zeros$bin_number
-
+printf "0b%s\n" "$no_leading_zeros_bin_number"
+printf "%s\n" "$no_leading_zeros_bin_number"
 printf "0b%s\n" "$bin_number"
 printf "%s\n" "$bin_number"
 printf "%s\n" "$(echo "$bin_number" | sed -r 's/(.{4})/\1 /g')"

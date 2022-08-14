@@ -25,8 +25,8 @@ for i in $(seq 1 $((total_bits - ${#bin_number}))); do
     zeros+="0"
 done
 
-bin_number=$zeros$bin_number
+local extended_bin_number=$zeros$bin_number
 
 printf "0b%s\n" "$bin_number"
 printf "%s\n" "$bin_number"
-printf "%s\n" "$(echo "$bin_number" | sed -r 's/(.{4})/\1 /g')"
+printf "%s\n" "$(echo "$extended_bin_number" | sed -r 's/(.{4})/\1 /g')"
