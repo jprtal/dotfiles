@@ -1,4 +1,4 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Enable Powerlevel10k instant prompt. Should stay close to the top of .zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -60,7 +60,7 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 key[Control-Left]="${terminfo[kLFT5]}"
 key[Control-Right]="${terminfo[kRIT5]}"
 key[Control-Delete]="${terminfo[kDC5]}"
-#key[Control-Backspace]="${terminfo[kbs]}"
+# key[Control-Backspace]="${terminfo[kbs]}"
 key[Alt-Left]="${terminfo[kLFT3]}"
 key[Alt-Right]="${terminfo[kRIT3]}"
 
@@ -80,7 +80,7 @@ key[Alt-Right]="${terminfo[kRIT3]}"
 [[ -n "${key[Control-Left]}" ]] && bindkey -- "${key[Control-Left]}" backward-word
 [[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
 [[ -n "${key[Control-Delete]}" ]] && bindkey -- "${key[Control-Delete]}" kill-word
-#[[ -n "${key[Control-Backspace]}" ]] && bindkey -- "${key[Control-Backspace]}" backward-kill-word
+# [[ -n "${key[Control-Backspace]}" ]] && bindkey -- "${key[Control-Backspace]}" backward-kill-word
 [[ -n "${key[Alt-Left]}" ]] && bindkey -- "${key[Alt-Left]}" backward-word
 [[ -n "${key[Alt-Right]}" ]] && bindkey -- "${key[Alt-Right]}" forward-word
 
@@ -133,7 +133,7 @@ zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
 zstyle ":completion:*" menu select
 
 # Completions for privileged commands
-zstyle ":completion::complete:*" gain-privileges 1
+# zstyle ":completion::complete:*" gain-privileges 1
 
 # Cache completions
 _ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
@@ -155,11 +155,11 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-# Powerlevel10k Ctrl+P to toggle right prompt
+# Powerlevel10k Ctrl+] to toggle right prompt
 function toggle-right-prompt() { p10k display '*/right'=hide,show; }
 zle -N toggle-right-prompt
-bindkey '^P' toggle-right-prompt
+bindkey '^]' toggle-right-prompt
 
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# To customize prompt, run `p10k configure` or edit .p10k.zsh.
 [[ ! -f ${ZDOTDIR:-$HOME}/.p10k.zsh ]] || source "${ZDOTDIR:-$HOME}/.p10k.zsh"
