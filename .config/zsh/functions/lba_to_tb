@@ -1,0 +1,20 @@
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <DEVICE>"
+    return 1
+fi
+
+if [[ ! -b "$1" ]]; then
+    echo "Device $1 doesn't exist"
+    return 2
+fi
+
+local smart_info=$(sudo smartctl -i -A -f brief -l devstat "$1")
+local block_size=$(echo "$smart_info" | grep "Sector Size" | awk -F'[^0-9]*' '$0=$2')
+local total_lbas_written=$(echo "$smart_info" | awk '/^241/ { print $(NF) }')
+local total_lbas_read=$(echo "$smart_info" | awk '/^242/ { print $(NF) }')
+
+awk -v bs="$block_size" -v tlw="$total_lbas_written" 'BEGIN { if (tlw) printf "%0.2f TBW\n", tlw * bs / 10^12 }'
+awk -v bs="$block_size" -v tlw="$total_lbas_written" 'BEGIN { if (tlw) printf "%0.2f TiBW\n", tlw * bs / 2^40 }'
+
+awk -v bs="$block_size" -v tlr="$total_lbas_read" 'BEGIN { if (tlr) printf "\n%0.2f TBR\n", tlr * bs / 10^12 }'
+awk -v bs="$block_size" -v tlr="$total_lbas_read" 'BEGIN { if (tlr) printf "%0.2f TiBR\n", tlr * bs / 2^40 }'
