@@ -1,0 +1,14 @@
+if [ $# -eq 0 ]; then
+    echo "Usage: dec2oct DEC_NUMBER"
+    return 1
+fi
+
+local DEC_NUMBER=$1
+
+local re='^[0-9]+$'
+if ! [[ $DEC_NUMBER =~ $re ]]; then
+    echo "Error: Not a valid decimal number" >&2;
+    return 2
+fi
+
+echo "obase=8; ibase=10; $DEC_NUMBER" | bc

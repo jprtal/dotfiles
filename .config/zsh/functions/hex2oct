@@ -1,0 +1,16 @@
+if [ $# -eq 0 ]; then
+    echo "Usage: hex2oct (0x)HEX_NUMBER"
+    return 1
+fi
+
+# Hexadecimal with/without "0x" prefix or/and grouped
+local HEX_NUMBER=$(echo "$*" | tr -d ' ' | cut -d'x' -f2 | tr '[:lower:]' '[:upper:]')
+
+# bc doesn't allow lowercase
+local re='^[0-9A-F]+$'
+if ! [[ $HEX_NUMBER =~ $re ]]; then
+   echo "Error: Not a valid hex number" >&2;
+   return 2
+fi
+
+echo "obase=8; ibase=16; $HEX_NUMBER" | bc
