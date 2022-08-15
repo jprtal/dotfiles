@@ -13,15 +13,15 @@ fi
 
 local hex_number=$(echo "obase=16; ibase=10; $DEC_NUMBER" | bc)
 
-local bytes_number=${#hex_number}
+local length=${#hex_number}
 
 # (N + (denom-1)) / (denom)
-local factor_round_up=$(((bytes_number + 3) / 4))
-local total_bytes=$((4 * factor_round_up))
+local factor_round_up=$(((length + 3) / 4))
+local extended_length=$((4 * factor_round_up))
 
 local zeros=""
 local i
-for i in $(seq 1 $((total_bytes - bytes_number))); do
+for i in $(seq 1 $((extended_length - length))); do
     zeros+="0"
 done
 
@@ -29,5 +29,5 @@ local extended_hex_number=$zeros$hex_number
 
 printf "0x%s\n" "$hex_number"
 printf "%s\n" "$hex_number"
-# printf "%s\n" "$(echo $extended_hex_number | rev | sed -r 's/(.{4})/\1 /g' | rev)"
+printf "%s\n" "$extended_hex_number"
 printf "%s\n" "$(echo "$extended_hex_number" | sed -r 's/(.{4})/\1 /g')"

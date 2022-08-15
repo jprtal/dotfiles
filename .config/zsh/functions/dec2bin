@@ -11,17 +11,17 @@ if ! [[ $DEC_NUMBER =~ $re ]]; then
    return 2
 fi
 
-local bits_number=$(echo "(l($DEC_NUMBER)/l(2))" | bc -l | awk '{ print int($1) }')
+local bin_number=$(echo "obase=2; ibase=10; $DEC_NUMBER" | bc)
+
+local length=${#bin_number}
 
 # (N + (denom-1)) / (denom)
-local factor_round_up=$(((bits_number + 3) / 4))
-local total_bits=$((4 * factor_round_up))
-
-local bin_number=$(echo "obase=2; ibase=10; $DEC_NUMBER" | bc)
+local factor_round_up=$(((length + 3) / 4))
+local extended_length=$((4 * factor_round_up))
 
 local zeros=""
 local i
-for i in $(seq 1 $((total_bits - ${#bin_number}))); do
+for i in $(seq 1 $((extended_length - length))); do
     zeros+="0"
 done
 
@@ -29,4 +29,5 @@ local extended_bin_number=$zeros$bin_number
 
 printf "0b%s\n" "$bin_number"
 printf "%s\n" "$bin_number"
+printf "%s\n" "$extended_bin_number"
 printf "%s\n" "$(echo "$extended_bin_number" | sed -r 's/(.{4})/\1 /g')"
