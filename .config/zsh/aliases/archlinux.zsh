@@ -1,6 +1,6 @@
 # AUR helper
 alias yay="paru"
-alias yeet="paru -Rcs"
+alias yeet="paru -Rnsc"
 alias whee="paru -Sccd"
 alias update="paru -Syu --newsonupgrade; echo; flatpak update"
 
