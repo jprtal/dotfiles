@@ -1,45 +1,21 @@
 {
     "telemetry.telemetryLevel": "off",
     "workbench.enableExperiments": false,
-    "window.restoreWindows": "none",
     "workbench.startupEditor": "newUntitledFile",
-    "files.hotExit": "off",
-    "window.titleBarStyle": "custom",
-    "workbench.iconTheme": "material-icon-theme",
-    "[dart]": {
-        "editor.formatOnSave": false,
-        "editor.formatOnType": true,
-        "editor.rulers": [
-            80
-        ],
-        "editor.selectionHighlight": false,
-        "editor.suggest.snippetsPreventQuickSuggestions": false,
-        "editor.suggestSelection": "first",
-        "editor.tabCompletion": "onlySnippets",
-        "editor.wordBasedSuggestions": false
-    },
-    "dart.flutterCreateAndroidLanguage": "java",
-    "dart.allowAnalytics": false,
-    "platformio-ide.activateOnlyOnPlatformIOProject": true,
-    "platformio-ide.disablePIOHomeStartup": true,
-    "terminal.integrated.fontFamily": "'MesloLGS Nerd Font'",
     "workbench.editor.untitled.hint": "hidden",
-    "C_Cpp.autocompleteAddParentheses": true,
-    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4 }",
-    "C_Cpp.default.includePath": [
-        "${workspaceFolder}/**",
-        "/usr/include/**",
-        "/usr/lib64/**"
-    ],
-    "editor.fontFamily": "'JetBrains Mono', 'Fira Code', 'Noto Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "window.restoreWindows": "none",
+    "window.titleBarStyle": "custom",
+    "terminal.integrated.fontFamily": "'MesloLGS NF'",
+    "editor.fontFamily": "'Jetbrains Mono','Fira Code'",
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": true,
-    "editor.fontSize": 13.5,
-    "[c]": {
-        "editor.rulers": [
-            80,
-            120
-        ]
-    },
-    "terminal.integrated.enablePersistentSessions": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "gitlens.defaultDateLocale": "system",
+    "editor.renderWhitespace": "all",
+    "editor.fontWeight": "500",
+    "editor.fontLigatures": true,
+    "workbench.colorTheme": "Monokai",
+    "editor.largeFileOptimizations": false,
+    "javascript.suggest.completeFunctionCalls": true,
+    "window.commandCenter": true
 }
