@@ -16,11 +16,9 @@ export GNUPGHOME="$_CONFIG_HOME/gnupg"
 [[ ! -d ${GNUPGHOME} ]] && mkdir -m 700 "${GNUPGHOME}"
 export GTK2_RC_FILES="$_CONFIG_HOME/gtk-2.0/gtkrc"
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$_CONFIG_HOME/java"
-# export GRADLE_USER_HOME="$_CONFIG_HOME/gradle"
 export DOCKER_CONFIG="$_CONFIG_HOME/docker"
 export LESSHISTFILE="$_STATE_HOME/less/lesshst"
 export PYTHONHISTFILE="$_STATE_HOME/python_history"
-# export VSCODE_EXTENSIONS="$_DATA_HOME/vscode-oss/extensions"
 export RUSTUP_HOME="$_DATA_HOME"/rustup
 export CARGO_HOME="$_DATA_HOME/cargo"
 export NVM_DIR="$_DATA_HOME/nvm"
@@ -34,16 +32,10 @@ unset _STATE_HOME
 unset _DATA_HOME
 unset _CACHE_HOME
 
-if [ -x "$(command -v seahorse)" ]; then
-    export SSH_ASKPASS=/usr/lib/seahorse/ssh-askpass
-fi
-
 # Rootless Podman docker-compose support
-_ROOTLES_PODMAN=false
-if [[ "$_ROOTLES_PODMAN" = true && -e "$XDG_RUNTIME_DIR/podman/podman.sock" ]]; then
+if [[ -e "$XDG_RUNTIME_DIR/podman/podman.sock" ]]; then
     export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 fi
-unset _ROOTLES_PODMAN
 
 export ANDROID_HOME="$HOME/Android/Sdk"
 export CHROME_EXECUTABLE="/usr/bin/chromium"
