@@ -26,6 +26,7 @@ export CARGO_HOME="$_DATA_HOME/cargo"
 export NVM_DIR="$_DATA_HOME/nvm"
 export NODE_REPL_HISTORY="$_DATA_HOME/node_repl_history"
 export TS_NODE_HISTORY="$_DATA_HOME/ts_node_repl_history"
+export PLATFORMIO_CORE_DIR="$_DATA_HOME/platformio"
 export CUDA_CACHE_PATH="$_CACHE_HOME/nv"
 
 unset _CONFIG_HOME
