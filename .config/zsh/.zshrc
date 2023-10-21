@@ -8,7 +8,7 @@ fi
 
 if [[ -d "${ZDOTDIR}" ]]; then
   if [[ -d "${ZDOTDIR}/aliases" ]]; then
-    for file in "${ZDOTDIR}/aliases"/*; do
+    for file in "${ZDOTDIR}/aliases"/*(N); do
       source "$file"
     done
   fi
@@ -22,7 +22,7 @@ if [[ -d "${ZDOTDIR}" ]]; then
   fi
 
   if [[ -d "${ZDOTDIR}/plugins" ]]; then
-    for file in "${ZDOTDIR}/plugins"/*/*.zsh; do
+    for file in "${ZDOTDIR}/plugins"/*/*.zsh(N); do
       source "$file"
     done
   fi
