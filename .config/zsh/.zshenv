@@ -29,6 +29,9 @@ export NODE_REPL_HISTORY="$_DATA_HOME/node_repl_history"
 export TS_NODE_HISTORY="$_DATA_HOME/ts_node_repl_history"
 export PLATFORMIO_CORE_DIR="$_DATA_HOME/platformio"
 export CUDA_CACHE_PATH="$_CACHE_HOME/nv"
+export TEXMFHOME="$_DATA_HOME/texmf"
+export TEXMFVAR="$_CACHE_HOME/texlive/texmf-var"
+export TEXMFCONFIG="$_CONFIG_HOME/texlive/texmf-config"
 
 unset _CONFIG_HOME
 unset _STATE_HOME
