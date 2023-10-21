@@ -12,8 +12,9 @@ export _CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
 # Dotfolders
 export WGETRC="$_CONFIG_HOME/wgetrc"
-export GNUPGHOME="$_CONFIG_HOME/gnupg"
-[[ ! -d ${GNUPGHOME} ]] && mkdir -m 700 "${GNUPGHOME}"
+# Doesn't really work because of systemd user units and socket-based activation
+# export GNUPGHOME="$_CONFIG_HOME/gnupg"
+# [[ ! -d ${GNUPGHOME} ]] && mkdir -m 700 "${GNUPGHOME}"
 export GTK2_RC_FILES="$_CONFIG_HOME/gtk-2.0/gtkrc"
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$_CONFIG_HOME/java"
 export DOCKER_CONFIG="$_CONFIG_HOME/docker"
