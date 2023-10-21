@@ -4,7 +4,6 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.untitled.hint": "hidden",
     "window.restoreWindows": "none",
-    "window.titleBarStyle": "custom",
     "terminal.integrated.fontFamily": "'MesloLGS NF'",
     "editor.fontFamily": "'Jetbrains Mono','Fira Code'",
     "editor.bracketPairColorization.enabled": true,
@@ -14,8 +13,9 @@
     "editor.renderWhitespace": "all",
     "editor.fontWeight": "500",
     "editor.fontLigatures": true,
-    "workbench.colorTheme": "Monokai",
     "editor.largeFileOptimizations": false,
     "javascript.suggest.completeFunctionCalls": true,
-    "window.commandCenter": true
+    "window.commandCenter": true,
+    "window.autoDetectColorScheme": true,
+    "window.titleBarStyle": "custom"
 }
