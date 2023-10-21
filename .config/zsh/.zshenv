@@ -15,6 +15,8 @@ export WGETRC="$_CONFIG_HOME/wgetrc"
 # Doesn't really work because of systemd user units and socket-based activation
 # export GNUPGHOME="$_CONFIG_HOME/gnupg"
 # [[ ! -d ${GNUPGHOME} ]] && mkdir -m 700 "${GNUPGHOME}"
+export GR_PREFS_PATH="$_CONFIG_HOME/gnuradio"
+export GRC_PREFS_PATH="$_CONFIG_HOME/gnuradio/grc.conf"
 export GTK2_RC_FILES="$_CONFIG_HOME/gtk-2.0/gtkrc"
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$_CONFIG_HOME/java"
 export DOCKER_CONFIG="$_CONFIG_HOME/docker"
