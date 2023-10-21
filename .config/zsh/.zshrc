@@ -163,3 +163,10 @@ bindkey '^]' toggle-right-prompt
 
 # To customize prompt, run `p10k configure` or edit .p10k.zsh.
 [[ ! -f ${ZDOTDIR:-$HOME}/.p10k.zsh ]] || source "${ZDOTDIR:-$HOME}/.p10k.zsh"
+
+
+# Source `code --locate-shell-integration-path zsh`. Speed up by resolving the
+# path ahead of time. Also might need `POWERLEVEL9K_TERM_SHELL_INTEGRATION`
+# https://github.com/microsoft/vscode/issues/165996
+# https://github.com/microsoft/vscode/issues/184442
+# [[ "$TERM_PROGRAM" == "vscode" ]] && source "/usr/lib/code/out/vs/workbench/contrib/terminal/browser/media/shellIntegration-rc.zsh"
