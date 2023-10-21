@@ -1,0 +1,20 @@
+if [ $# -lt 3 ]; then
+    echo "Usage: $0 crc_file dest_file offset"
+    return 1
+fi
+
+if [[ ! -f "$1" ]]; then
+    echo "File $1 doesn't exist"
+    return 2
+fi
+
+if [[ ! -f "$2" ]]; then
+    echo "File $2 doesn't exist"
+    return 3
+fi
+
+
+local hash=$(rhash "$1" --simple | cut -d' ' -f1)
+local bytes=$(echo "${hash:6:2}${hash:4:2}${hash:2:2}${hash:0:2}" | sed -r 's/(.{2})/\\x\1/g')
+
+printf "$bytes" | dd conv=notrunc of=header_checksum.bin bs=1 seek=$(("$3"))
