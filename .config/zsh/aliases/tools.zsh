@@ -1,5 +1,5 @@
 # Network
-alias myip="curl icanhazip.com"
+alias myip="curl -4 icanhazip.com; curl -6 icanhazip.com"
 alias mydns="nmcli dev show | grep DNS"
 
 # Adjust monitor brightness
