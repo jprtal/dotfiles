@@ -25,6 +25,7 @@ export PYTHONHISTFILE="$_STATE_HOME/python_history"
 export RUSTUP_HOME="$_DATA_HOME"/rustup
 export CARGO_HOME="$_DATA_HOME/cargo"
 export NVM_DIR="$_DATA_HOME/nvm"
+export PNPM_HOME="$_DATA_HOME/pnpm"
 export NODE_REPL_HISTORY="$_DATA_HOME/node_repl_history"
 export TS_NODE_HISTORY="$_DATA_HOME/ts_node_repl_history"
 export PLATFORMIO_CORE_DIR="$_DATA_HOME/platformio"
@@ -46,6 +47,6 @@ fi
 export ANDROID_HOME="$HOME/Android/Sdk"
 export CHROME_EXECUTABLE="/usr/bin/chromium"
 
-# typeset -U PATH path
-# path=("$CARGO_HOME/bin" "${path[@]}")
-# export PATH
+typeset -U PATH path
+path=("$PNPM_HOME" "${path[@]}")
+export PATH

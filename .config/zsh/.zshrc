@@ -170,3 +170,12 @@ bindkey '^]' toggle-right-prompt
 # https://github.com/microsoft/vscode/issues/165996
 # https://github.com/microsoft/vscode/issues/184442
 # [[ "$TERM_PROGRAM" == "vscode" ]] && source "/usr/lib/code/out/vs/workbench/contrib/terminal/browser/media/shellIntegration-rc.zsh"
+
+# Fast Node Manager (fnm)
+# eval "$(fnm env --use-on-cd)"
+
+# Node Version Manager
+# source /usr/share/nvm/init-nvm.sh
+
+# tabtab source for pnpm package
+[[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/tabtab/zsh/__tabtab.zsh ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/tabtab/zsh/__tabtab.zsh
