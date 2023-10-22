@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=NotifySession
-GenericName=Notify session in use
-Comment=Notify if session in use is wayland or x11
-Exec=sh -c "sleep 1; $HOME/.config/autostart-scripts/notify-session.sh"
-Terminal=false
-Type=Application
-X-GNOME-Autostart-enabled=false

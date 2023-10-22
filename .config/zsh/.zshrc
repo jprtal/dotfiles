@@ -122,11 +122,6 @@ zstyle ":completion:*" matcher-list "m:{a-zA-Z-_}={A-Za-z_-}" "r:|=*" "l:|=* r:|
 # zstyle ":completion:*" matcher-list "m:{a-zA-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"
 
 # Colored completion listings
-if [[ -f ~/.dir_colors ]]; then
-  eval "$(dircolors -b ~/.dir_colors)"
-else
-  eval "$(dircolors -b)"
-fi
 zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
 
 # Completions with arrow keys
@@ -146,13 +141,13 @@ compinit -d "${_ZSH_CACHE_DIR}/zcompdump"
 unset _ZSH_CACHE_DIR
 
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
-# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /opt/homebrew/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Load zsh-syntax-highlighting at the end
 # https://github.com/zsh-users/zsh-syntax-highlighting/issues/67
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 # Powerlevel10k Ctrl+] to toggle right prompt
@@ -178,4 +173,4 @@ bindkey '^]' toggle-right-prompt
 # source /usr/share/nvm/init-nvm.sh
 
 # tabtab source for pnpm package
-[[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/tabtab/zsh/__tabtab.zsh ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/tabtab/zsh/__tabtab.zsh
+# [[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/tabtab/zsh/__tabtab.zsh ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/tabtab/zsh/__tabtab.zsh
