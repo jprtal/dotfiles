@@ -8,6 +8,8 @@ export _DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export _CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
 # Dotfolders
+export RUSTUP_HOME="$_DATA_HOME"/rustup
+export CARGO_HOME="$_DATA_HOME/cargo"
 export PNPM_HOME="$HOME/Library/pnpm"
 
 unset _CONFIG_HOME
@@ -21,5 +23,5 @@ if [[ -e "$HOME/.local/share/containers/podman/machine/qemu/podman.sock" ]]; the
 fi
 
 typeset -U PATH path
-path=("$PNPM_HOME" "${path[@]}")
+path=("$PNPM_HOME" "$CARGO_HOME/bin" "${path[@]}")
 export PATH
