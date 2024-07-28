@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+_ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+autoload -Uz compinit
+compinit -d "${_ZSH_CACHE_DIR}/zcompdump"
 
 if [[ -d "${ZDOTDIR}" ]]; then
   if [[ -d "${ZDOTDIR}/aliases" ]]; then
@@ -136,13 +139,10 @@ zstyle ":completion:*" menu select
 # zstyle ":completion::complete:*" gain-privileges 1
 
 # Cache completions
-_ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 [[ ! -d ${_ZSH_CACHE_DIR} ]] && mkdir -p "${_ZSH_CACHE_DIR}"
 zstyle ":completion:*" use-cache yes
 zstyle ":completion:*:complete:*" cache-path "${_ZSH_CACHE_DIR}"
 
-autoload -Uz compinit
-compinit -d "${_ZSH_CACHE_DIR}/zcompdump"
 unset _ZSH_CACHE_DIR
 
 
@@ -176,6 +176,3 @@ bindkey '^]' toggle-right-prompt
 
 # Node Version Manager
 # source /usr/share/nvm/init-nvm.sh
-
-# tabtab source for pnpm package
-[[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/tabtab/zsh/__tabtab.zsh ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/tabtab/zsh/__tabtab.zsh
