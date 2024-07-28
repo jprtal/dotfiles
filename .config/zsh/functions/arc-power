@@ -3,11 +3,17 @@ if [[ ! -f "/sys/class/graphics/fb0/device/hwmon/hwmon1/energy1_input" ]]; then
     return 1
 fi
 
+local seconds=1
+if [ $# -eq 1 ]; then
+    seconds="$1"
+fi
+
 local first_measure="$(</sys/class/graphics/fb0/device/hwmon/hwmon1/energy1_input)"
-sleep 1;
+sleep "$seconds";
 local second_measure="$(</sys/class/graphics/fb0/device/hwmon/hwmon1/energy1_input)"
 
 local microjoules_second=$((second_measure - first_measure))
 # local watts=$((microjoules_second / 1000000))
 local watts=$(echo "scale=2; $microjoules_second / 1000000" | bc)
 echo "$watts W"
+echo "in $seconds seconds"
