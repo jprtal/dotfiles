@@ -7,10 +7,15 @@ fi
 local HEX_NUMBER=$(echo "$*" | tr -d ' ' | cut -d'x' -f2 | tr '[:lower:]' '[:upper:]')
 
 # bc doesn't allow lowercase
-local re='^[0-9A-F]+$'
-if ! [[ $HEX_NUMBER =~ $re ]]; then
+local re='^[0-9A-F]*$'
+if ! expr "$HEX_NUMBER" : "$re" > /dev/null; then
    echo "Error: Not a valid hex number" >&2;
    return 2
 fi
 
-echo "obase=10; ibase=16; $HEX_NUMBER" | bc
+local dec_number
+read dec_number << EOF
+$(echo "obase=10; ibase=16; $HEX_NUMBER" | bc)
+EOF
+
+echo "$dec_number"

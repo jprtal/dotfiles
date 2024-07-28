@@ -6,10 +6,16 @@ fi
 # Binary with/without "0b" prefix or/and grouped
 local BIN_NUMBER=$(echo "$*" | tr -d ' ' | cut -d'b' -f2)
 
-local re='^[0-1]+$'
-if ! [[ $BIN_NUMBER =~ $re ]]; then
+local re='^[0-1]*$'
+if ! expr "$BIN_NUMBER" : "$re" > /dev/null; then
     echo "Error: Not a valid binary number" >&2;
     return 2
 fi
 
-echo "obase=10; ibase=2; $BIN_NUMBER" | bc
+local dec_number
+# Large numbers are splitted at 70 characters per line
+read dec_number << EOF
+$(echo "obase=10; ibase=2; $BIN_NUMBER" | bc)
+EOF
+
+echo "$dec_number"

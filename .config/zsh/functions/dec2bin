@@ -5,13 +5,17 @@ fi
 
 local DEC_NUMBER=$1
 
-local re='^[0-9]+$'
-if ! [[ $DEC_NUMBER =~ $re ]]; then
+local re='^[0-9]*$'
+if ! expr "$DEC_NUMBER" : "$re" > /dev/null; then
    echo "Error: Not a valid decimal number" >&2;
    return 2
 fi
 
-local bin_number=$(echo "obase=2; ibase=10; $DEC_NUMBER" | bc)
+local bin_number
+# Large numbers are splitted at 70 characters per line
+read bin_number << EOF
+$(echo "obase=2; ibase=10; $DEC_NUMBER" | bc)
+EOF
 
 local length=${#bin_number}
 
@@ -19,15 +23,11 @@ local length=${#bin_number}
 local factor_round_up=$(((length + 3) / 4))
 local extended_length=$((4 * factor_round_up))
 
-local zeros=""
-local i
-for i in $(seq 1 $((extended_length - length))); do
-    zeros+="0"
-done
+local zeros=$(printf %$((extended_length - length))s | tr " " "0")
 
 local extended_bin_number=$zeros$bin_number
 
 printf "0b%s\n" "$bin_number"
 printf "%s\n" "$bin_number"
 printf "%s\n" "$extended_bin_number"
-printf "%s\n" "$(echo "$extended_bin_number" | sed -r 's/(.{4})/\1 /g')"
+printf "%s\n" "$(echo "$extended_bin_number" | sed 's/\(.\{4\}\)/\1 /g')"
