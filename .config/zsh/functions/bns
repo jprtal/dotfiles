@@ -1,13 +1,23 @@
 # Change monitor brightness
 
+if [ $# -eq 0 ] || [ $# -gt 2 ]; then
+    echo "Usage: bns <brightness> [display]"
+    return 1
+fi
+
+# `ddcutil detect`. Starting from 1
+local DISPLAY_NUMBER=1
+
+if [ $# -eq 2 ]; then
+    DISPLAY_NUMBER="$2"
+fi
+
 # bns <brightness> <display>
-function bns() {
-    if [ -x "$(command -v ddcutil)" ]; then
-        # Deal with "Verification failed for feature 10" using a loop
-        while ! ddcutil setvcp 10 "$1" -d "$2"; do
-            :
-        done
-    else
-        echo "ddcutil is not installed."
-    fi
-}
+if [ -x "$(command -v ddcutil)" ]; then
+    # Deal with "Verification failed for feature 10" using a loop
+    while ! ddcutil setvcp 10 "$1" -d "$DISPLAY_NUMBER"; do
+        :
+    done
+else
+    echo "ddcutil is not installed."
+fi
