@@ -5,32 +5,26 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
+if [[ -d "${ZDOTDIR}/aliases" ]]; then
+  for file in "${ZDOTDIR}/aliases"/*(N); do
+    source "$file"
+  done
+fi
+
+[[ -d "${ZDOTDIR}/completions" ]] && fpath=( "${ZDOTDIR}/completions" "${fpath[@]}" )
+
+if [[ -d "${ZDOTDIR}/functions" ]]; then
+  fpath=( "${ZDOTDIR}/functions" "${fpath[@]}" )
+  # Load functions
+  autoload -Uz "${fpath[1]}"/*(:t)
+fi
+
+
 _ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+# Zsh completion system
 autoload -Uz compinit
 compinit -d "${_ZSH_CACHE_DIR}/zcompdump"
-
-if [[ -d "${ZDOTDIR}" ]]; then
-  if [[ -d "${ZDOTDIR}/aliases" ]]; then
-    for file in "${ZDOTDIR}/aliases"/*(N); do
-      source "$file"
-    done
-  fi
-
-  [[ -d "${ZDOTDIR}/completions" ]] && fpath=( "${ZDOTDIR}/completions" "${fpath[@]}" )
-
-  if [[ -d "${ZDOTDIR}/functions" ]]; then
-    fpath=( "${ZDOTDIR}/functions" "${fpath[@]}" )
-    # Load functions
-    autoload -Uz "${fpath[1]}"/*(:t)
-  fi
-
-  if [[ -d "${ZDOTDIR}/plugins" ]]; then
-    for file in "${ZDOTDIR}/plugins"/*/*.zsh(N); do
-      source "$file"
-    done
-  fi
-fi
-unset file
 
 
 _ZSH_STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/zsh"
@@ -146,19 +140,27 @@ zstyle ":completion:*:complete:*" cache-path "${_ZSH_CACHE_DIR}"
 unset _ZSH_CACHE_DIR
 
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Load zsh-syntax-highlighting at the end
 # https://github.com/zsh-users/zsh-syntax-highlighting/issues/67
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 # Powerlevel10k Ctrl+] to toggle right prompt
 function toggle-right-prompt() { p10k display '*/right'=hide,show; }
 zle -N toggle-right-prompt
 bindkey '^]' toggle-right-prompt
+
+
+if [[ -d "${ZDOTDIR}/plugins" ]]; then
+  for file in "${ZDOTDIR}/plugins"/*/*.zsh(N); do
+    source "$file"
+  done
+fi
+unset file
 
 
 # To customize prompt, run `p10k configure` or edit .p10k.zsh.
