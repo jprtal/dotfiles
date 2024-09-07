@@ -23,8 +23,8 @@ fi
 
 _ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 # Zsh completion system
-autoload -Uz compinit
-compinit -d "${_ZSH_CACHE_DIR}/zcompdump"
+autoload -Uz compinit && compinit -d "${_ZSH_CACHE_DIR}/zcompdump"
+[[ ${_ZSH_CACHE_DIR}/zcompdump.zwc -nt ${_ZSH_CACHE_DIR}/zcompdump ]] || zcompile -R "${_ZSH_CACHE_DIR}"/zcompdump
 
 
 _ZSH_STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/zsh"
