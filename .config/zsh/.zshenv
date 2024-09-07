@@ -1,5 +1,8 @@
 # Set ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh" in /etc/zsh/zshenv
 
+# Don't source /etc/* Zsh files
+setopt no_global_rcs
+
 export PAGER="${PAGER:-less}"
 export LESS="${LESS:--R}"
 
