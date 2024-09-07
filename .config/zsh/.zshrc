@@ -140,8 +140,6 @@ zstyle ":completion:*:complete:*" cache-path "${_ZSH_CACHE_DIR}"
 unset _ZSH_CACHE_DIR
 
 
-# source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Load zsh-syntax-highlighting at the end
@@ -163,10 +161,6 @@ fi
 unset file
 
 
-# To customize prompt, run `p10k configure` or edit .p10k.zsh.
-[[ ! -f ${ZDOTDIR:-$HOME}/.p10k.zsh ]] || source "${ZDOTDIR:-$HOME}/.p10k.zsh"
-
-
 # Source `code --locate-shell-integration-path zsh`. Speed up by resolving the
 # path ahead of time. Also might need `POWERLEVEL9K_TERM_SHELL_INTEGRATION`
 # https://github.com/microsoft/vscode/issues/165996
@@ -178,3 +172,8 @@ unset file
 
 # Node Version Manager
 # source /usr/share/nvm/init-nvm.sh
+
+
+source "${ZDOTDIR}"/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit .p10k.zsh.
+[[ ! -f ${ZDOTDIR:-$HOME}/.p10k.zsh ]] || source "${ZDOTDIR:-$HOME}/.p10k.zsh"
