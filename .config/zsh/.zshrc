@@ -6,6 +6,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+function zcompile-many() {
+  local f
+  for f; do
+    zcompile -R -- "$f".zwc "$f";
+  done
+}
+
+
 if [[ -d "${ZDOTDIR}/aliases" ]]; then
   for file in "${ZDOTDIR}/aliases"/*(N); do
     source "$file"
@@ -141,10 +149,12 @@ unset _ZSH_CACHE_DIR
 
 
 # ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+# Compile: `zcompile-many "${ZDOTDIR}"/zsh-autosuggestions/{zsh-autosuggestions.zsh,src/**/*.zsh}`
 # source "${ZDOTDIR}"/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Load zsh-syntax-highlighting at the end
 # https://github.com/zsh-users/zsh-syntax-highlighting/issues/67
+# Compile: `zcompile-many "${ZDOTDIR}"/zsh-syntax-highlighting/{zsh-syntax-highlighting.zsh,highlighters/*/*.zsh}``
 source "${ZDOTDIR}"/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
@@ -175,6 +185,7 @@ unset file
 # source /usr/share/nvm/init-nvm.sh
 
 
+# Compile: `make -C "${ZDOTDIR}"/powerlevel10k pkg`
 source "${ZDOTDIR}"/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit .p10k.zsh.
 [[ ! -f ${ZDOTDIR:-$HOME}/.p10k.zsh ]] || source "${ZDOTDIR:-$HOME}/.p10k.zsh"
