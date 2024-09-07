@@ -140,11 +140,12 @@ zstyle ":completion:*:complete:*" cache-path "${_ZSH_CACHE_DIR}"
 unset _ZSH_CACHE_DIR
 
 
-# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+# source "${ZDOTDIR}"/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Load zsh-syntax-highlighting at the end
 # https://github.com/zsh-users/zsh-syntax-highlighting/issues/67
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "${ZDOTDIR}"/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 # Powerlevel10k Ctrl+] to toggle right prompt
