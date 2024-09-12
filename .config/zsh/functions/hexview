@@ -1,1 +1,0 @@
-hexdump -C "$1" | less
